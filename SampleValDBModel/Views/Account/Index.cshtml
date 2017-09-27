@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SampleValDBModel.Models.UserAccount>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Register") &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+    @Html.ActionLink("GO To LogIn ", "Login")
+</p>
+
+<!--Add Jquery Datatable reference files-->
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
+<div style="width:90%;">
+    <table id="Jdatatable" class="table table-responsive table-bordered">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>DOB</th>
+        
+            </tr>
+        </thead>
+    </table>
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        $("#Jdatatable").DataTable({
+            "ajax": {
+                "url": "/Account/GetData",
+                "type": "GET",
+                "datatype":"json"
+            },
+            "columns": [
+                    
+                        { "data": "UserName", "autoWidth": true },
+                        { "data": "FirstName", "autoWidth": true },
+                        { "data": "LastName", "autoWidth": true },
+                  
+                        { "data": "Email", "autoWidth": true },
+                          { "data": "DOB", "autoWidth": true }
+
+            ]
+        });
+    });
+    </script>
+}

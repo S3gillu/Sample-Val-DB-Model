@@ -1,0 +1,94 @@
+﻿@model SampleValDBModel.Models.UserAccount
+@{
+    ViewBag.Title = "Register";
+}
+<h2>Register</h2>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <div class="form-horizontal">
+            <h4>UserAccount</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+
+            @if (ViewBag.Message != null)
+            {
+                <div class="form-group">
+                    <div class="col-md-10">@ViewBag.Message</div>
+                </div>
+            }
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.UserName, new { placeholder = "Create Your User Name",@class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UserName,"", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Password, new { placeholder = "Your password Please", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfirmPassword, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.ConfirmPassword, new { placeholder = "Confirm Your password",@class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.FirstName, new { placeholder = "Your First Name", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.LastName, new { placeholder = "Your last Name", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Email, new { placeholder = "Your Email",@class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DOB, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.DOB, new { placeholder = "dd/mm/yyyy",  @class = "form-control"  })
+                    @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Register" class="btn btn-success" />
+                    <input type="reset" value="Reset" class="btn btn-danger" />
+                </div>
+            </div>
+
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
